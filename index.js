@@ -1,10 +1,13 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandAloneApolloServer } from "@graphback/runtime";
 
+// types
+import { typeDefs } from "./schema.js";
+
 // server setup
 const server = new ApolloServer({
-  // typeDefs
-  // resolvers
+    typeDefs,
+    // resolvers
 });
 
 const { url } = await startStandAloneApolloServer(server, {
