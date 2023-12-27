@@ -1,0 +1,50 @@
+# Normal query to get reviews
+query ReviewQuery {
+  reviews {
+  id,
+  rating,
+  content,
+  }
+}
+
+# variables
+{
+  "id": 1
+}
+
+# Game Query after relationship
+query GameQuery($id: ID!) {
+    game(id: $id) {
+      title,
+      reviews {
+        rating, 
+        content
+      }
+    }
+  }
+  
+# Author Query after relationship
+query AuthorQuery($id: ID!) {
+    author(id: $id) {
+      name,
+      reviews {
+        rating, 
+        content
+      }
+    }
+  }
+
+# Review Query after relationship
+query ReviewQuery($id: ID!) {
+    review(id: $id) {
+      rating,
+      game {
+        title,
+        platform
+      },
+      author {
+        name,
+        verified
+      }
+    }
+  }
