@@ -12,8 +12,14 @@ const resolvers = {
     games() {
       return db.games;
     },
+    game(_, args) {
+      return db.games.find((game) => game.id === args.id);
+    },
     authors() {
       return db.authors;
+    },
+    author(_, args) {
+      return db.authors.find((author) => author.id === args.id);
     },
     reviews() {
       return db.reviews;
@@ -21,11 +27,23 @@ const resolvers = {
     review(_, args) {
       return db.reviews.find((review) => review.id === args.id);
     },
-    game(_, args) {
-      return db.games.find((game) => game.id === args.id);
+  },
+  Game: {
+    reviews(parents) {
+      return db.reviews.filter((r) => r.game_id === parents.id);
     },
-    author(_, args) {
-      return db.authors.find((author) => author.id === args.id);
+  },
+  Author: {
+    reviews(parents) {
+      return db.reviews.filter((r) => r.author_id === parents.id);
+    },
+  },
+  Review: {
+    game(parents) {
+      return db.games.find((g) => g.id === parents.game_id);
+    },
+    author(parents) {
+      return db.authors.find((a) => a.id === parents.author_id);
     },
   },
 };
