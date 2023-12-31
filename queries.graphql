@@ -66,3 +66,11 @@ mutation AddMutation($game: AddGameInput!) {
     platform
   }
 }
+
+# Update Mutation
+mutation EditMutation($id: ID!, $edits: EditGameInput!) {
+  updateGame(id: $id, edits: $edits) {
+    title,
+    platform
+  }
+}
