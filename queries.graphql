@@ -48,3 +48,12 @@ query ReviewQuery($id: ID!) {
       }
     }
   }
+
+# Delete Mutation 
+mutation DeleteMutation($id: ID!) {
+  deleteGame(id: $id) {
+    id,
+    title,
+    platform
+  }
+}
